@@ -8,14 +8,17 @@ import {AsideBarComponent} from "./aside-bar/aside-bar.component";
 import {PokemonListComponent} from "./pokemon-list/pokemon-list.component";
 import {PokemonDetailsComponent} from "./pokemon-details/pokemon-details.component";
 import {HttpClientModule} from "@angular/common/http";
-
+import {LoaderComponent} from "./loader/loader.component";
+import {LoaderService} from "../services/loader.service";
+import {PokemonDataService} from "../services/pokemon.data.service";
 
 @NgModule({
   declarations: [
-    AppComponent, TopBarComponent, BottomBarComponent, AsideBarComponent, PokemonListComponent, PokemonDetailsComponent
+    AppComponent, LoaderComponent, TopBarComponent, BottomBarComponent, AsideBarComponent, PokemonListComponent, PokemonDetailsComponent
   ],
   imports:[BrowserModule, HttpClientModule],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [LoaderService, PokemonDataService]
 })
 
 export class AppModule{}

@@ -8,5 +8,14 @@ export interface IPokemonListResponse {
 export interface IPokemonListItem {
   name: string,
   url: string,
-  content?: string
+}
+
+export interface IPokemonDetails {
+  sprites?: IPokemonSprite,
+  [key: string]: any
+}
+
+interface IPokemonSprite {
+  back_default: string,
+  [key: string]: any
 }
