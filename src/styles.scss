@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@import "assets/styles/common/accordion.scss";
+@import "assets/styles/vars/colors.scss";
+@import "assets/styles/vars/borders.scss";
+@import "assets/styles/vars/fonts.scss";
+@import "assets/styles/vars/shadows.scss";
+@import "assets/styles/vars/typo.scss";
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: $font-family;
+  margin: 0;
+  min-height: 100vh;
+  padding: 10px;
+}

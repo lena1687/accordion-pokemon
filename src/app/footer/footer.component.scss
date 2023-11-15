@@ -1,0 +1,9 @@
+@import "../../styles";
+
+footer {
+  background-color: $color-white;
+  color: $color-black;
+  padding: 10px;
+  @extend .border-default;
+  @extend .typo-h3-highlight;
+}
