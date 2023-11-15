@@ -43,7 +43,7 @@ export class PokemonDetailsComponent {
         this.loaderImageService.startLoading(this.name);
         setTimeout(() => {
           this.loaderImageService.stopLoading(this.name);
-        }, 2000);
+        }, 500);
         this.content = response;
         this.imgPath = this.content['sprites'] ? this.content['sprites']['back_default']  : '';
       }
