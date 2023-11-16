@@ -1,4 +1,4 @@
-@import "../../styles";
+@import "../../../styles";
 
 aside {
   display: flex;
@@ -10,5 +10,6 @@ aside {
   @media (max-width: 768px) {
     margin-bottom: 20px; // Add some spacing between aside and main content
     padding: 15px;
+    width: 100%;
   }
 }
