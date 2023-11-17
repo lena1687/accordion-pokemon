@@ -1,7 +1,26 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError, Observable, throwError} from 'rxjs';
-import {IPokemonDetails, IPokemonListItem, IPokemonListResponse} from "../models/Pokemons";
+
+export interface IPokemonListResponse {
+  count: number,
+  next: string,
+  previous: null,
+  results: Array<IPokemonListItem>
+}
+
+export interface IPokemonListItem {
+  name: string,
+  url: string,
+}
+
+export interface IPokemonDetails {
+  sprites: IPokemonSprite
+}
+
+export interface IPokemonSprite {
+  front_default: string
+}
 
 @Injectable({
   providedIn: 'root',

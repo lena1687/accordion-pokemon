@@ -13,8 +13,8 @@ export class AccordionComponent {
   isLoaded: boolean = true;
   @Output() onClick = new EventEmitter<MouseEvent>();
 
-  constructor(public loaderImageService: LoaderService) {
-    this.loaderImageService.loadingStatuses$.subscribe(statuses => {
+  constructor(public loaderContentService: LoaderService) {
+    this.loaderContentService.loadingStatuses$.subscribe(statuses => {
       this.isLoaded = !statuses[this.name];
     });
   }
@@ -23,9 +23,9 @@ export class AccordionComponent {
     this.isExpanded = !this.isExpanded;
     if(this.isExpanded && this.isLoaded) {
       this.onClick.emit(event);
-      this.loaderImageService.startLoading(this.name);
+      this.loaderContentService.startLoading(this.name);
       setTimeout(() => {
-        this.loaderImageService.stopLoading(this.name);
+        this.loaderContentService.stopLoading(this.name);
       }, 500);
     }
   }

@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import { PokemonDataService } from "../../../../../services/pokemon.data.service";
-import {IPokemonListItem, IPokemonListResponse} from "../../../../../models/Pokemons";
+import {Component, OnInit} from '@angular/core';
+import {IPokemonListItem, IPokemonListResponse, PokemonDataService} from "../../../../../services/pokemon.data.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({

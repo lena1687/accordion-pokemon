@@ -1,6 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {IPokemonDetails, IPokemonListItem} from "../../../../../models/Pokemons";
-import {PokemonDataService} from "../../../../../services/pokemon.data.service";
+import {IPokemonListItem, PokemonDataService} from "../../../../../services/pokemon.data.service";
 
 @Component({
   selector: 'app-pokemon-details',
