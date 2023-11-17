@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import {
+  CanActivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  UrlTree,
+  Router,
+} from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,9 +16,15 @@ export class RedirectGuardService implements CanActivate {
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    state: RouterStateSnapshot,
+  ):
+    | boolean
+    | UrlTree
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree> {
     const defaultQueryParam = '50';
-    return this.router.createUrlTree(['/home'], { queryParams: { limit: defaultQueryParam } });
+    return this.router.createUrlTree(['/home'], {
+      queryParams: { limit: defaultQueryParam },
+    });
   }
 }

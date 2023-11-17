@@ -1,6 +1,10 @@
 <div class="pokemon-lists">
   <h1>Pokemons</h1>
-  <app-pagination [totalPages]="totalPages" [currentPage]="currentPage" (pageSelected)="changePage($event)"></app-pagination>
+  <app-pagination
+    [totalPages]="totalPages"
+    [currentPage]="currentPage"
+    (pageSelected)="changePage($event)"
+  ></app-pagination>
   <div *ngIf="items">
     <div *ngFor="let item of itemsOnCurrentPage">
       <app-accordion [name]="item.name" (onClick)="toggleAccordion(item)">

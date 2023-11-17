@@ -1,13 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {IPokemonListItem, IPokemonListResponse, PokemonDataService} from "../../../../../services/pokemon.data.service";
-import {ActivatedRoute} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import {
+  IPokemonListItem,
+  IPokemonListResponse,
+  PokemonDataService,
+} from '../../../../../services/pokemon.data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
-  styleUrls: ['./pokemon-list.component.scss']
+  styleUrls: ['./pokemon-list.component.scss'],
 })
-
 export class PokemonListComponent implements OnInit {
   limit: string = '';
   items: Array<IPokemonListItem> = [];
@@ -25,33 +28,34 @@ export class PokemonListComponent implements OnInit {
     this.currentPage = page;
   }
 
-  constructor(private dataService: PokemonDataService, private route: ActivatedRoute) {}
+  constructor(
+    private dataService: PokemonDataService,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.limit = params['limit'];
     });
-    this.getData()
+    this.getData();
   }
 
   getData() {
     const limitValue = +this.limit > 2 ? +this.limit : 2;
-    this.dataService.getList(limitValue).subscribe(
-      (response: IPokemonListResponse) => {
+    this.dataService
+      .getList(limitValue)
+      .subscribe((response: IPokemonListResponse) => {
         response['results'].forEach((pokemon) => {
           this.items.push(pokemon);
-          this.totalPages =  Math.ceil(this.items.length / this.itemsPerPage);
+          this.totalPages = Math.ceil(this.items.length / this.itemsPerPage);
         });
-      },
-    );
+      });
   }
 
-  toggleAccordion(item:IPokemonListItem) {
-    if(item.details) return
-    this.dataService.getItem(item.url).subscribe(
-      (details) => {
-        item.details = details;
-      }
-    )
+  toggleAccordion(item: IPokemonListItem) {
+    if (item.details) return;
+    this.dataService.getItem(item.url).subscribe((details) => {
+      item.details = details;
+    });
   }
 }

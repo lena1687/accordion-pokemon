@@ -1,7 +1,24 @@
 <div class="pagination">
-  <button class="pagination-button" (click)="selectPage(currentPage - 1)" [disabled]="currentPage === 1">&lt;</button>
-  <button class="pagination-button" *ngFor="let page of pages" (click)="selectPage(page)" [class.active]="currentPage === page">
+  <button
+    class="pagination-button"
+    (click)="selectPage(currentPage - 1)"
+    [disabled]="currentPage === 1"
+  >
+    &lt;
+  </button>
+  <button
+    class="pagination-button"
+    *ngFor="let page of pages"
+    (click)="selectPage(page)"
+    [class.active]="currentPage === page"
+  >
     {{ page }}
   </button>
-  <button class="pagination-button" (click)="selectPage(currentPage + 1)" [disabled]="currentPage === totalPages">&gt;</button>
+  <button
+    class="pagination-button"
+    (click)="selectPage(currentPage + 1)"
+    [disabled]="currentPage === totalPages"
+  >
+    &gt;
+  </button>
 </div>

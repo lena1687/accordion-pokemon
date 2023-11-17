@@ -4,9 +4,10 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-
 export class LoaderService {
-  private loadingStatusesSubject = new BehaviorSubject<{ [key: string]: boolean }>({});
+  private loadingStatusesSubject = new BehaviorSubject<{
+    [key: string]: boolean;
+  }>({});
   loadingStatuses$ = this.loadingStatusesSubject.asObservable();
 
   startLoading(key: string, status: boolean = true) {
