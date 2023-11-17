@@ -3,7 +3,9 @@
   <app-pagination [totalPages]="totalPages" [currentPage]="currentPage" (pageSelected)="changePage($event)"></app-pagination>
   <div *ngIf="items">
     <div *ngFor="let item of itemsOnCurrentPage">
-      <app-pokemon-details [pokemon]="item"></app-pokemon-details>
+      <app-accordion [name]="item.name" (onClick)="toggleAccordion(item)">
+        <app-pokemon-details [details]="item.details!"></app-pokemon-details>
+      </app-accordion>
     </div>
   </div>
 </div>

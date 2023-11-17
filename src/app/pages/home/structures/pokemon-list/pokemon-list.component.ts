@@ -39,10 +39,19 @@ export class PokemonListComponent implements OnInit {
     this.dataService.getList(limitValue).subscribe(
       (response: IPokemonListResponse) => {
         response['results'].forEach((pokemon) => {
-          this.items.push({name: pokemon.name, url: pokemon.url});
+          this.items.push(pokemon);
           this.totalPages =  Math.ceil(this.items.length / this.itemsPerPage);
         });
       },
     );
+  }
+
+  toggleAccordion(item:IPokemonListItem) {
+    if(item.details) return
+    this.dataService.getItem(item.url).subscribe(
+      (details) => {
+        item.details = details;
+      }
+    )
   }
 }

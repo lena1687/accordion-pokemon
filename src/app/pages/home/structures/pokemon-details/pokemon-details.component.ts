@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {IPokemonListItem, PokemonDataService} from "../../../../../services/pokemon.data.service";
+import {IPokemonDetails} from "../../../../../services/pokemon.data.service";
 
 @Component({
   selector: 'app-pokemon-details',
@@ -8,22 +8,5 @@ import {IPokemonListItem, PokemonDataService} from "../../../../../services/poke
 })
 
 export class PokemonDetailsComponent {
-  @Input() set pokemon(value: IPokemonListItem) {
-    const {name, url} = value;
-    this.name = name;
-    this.imgPath = url;
-  }
-
-  name:string = '';
-  imgPath: string = '';
-
-  constructor(private dataService: PokemonDataService) {}
-
-  toggleAccordion() {
-    this.dataService.getItem(this.imgPath).subscribe(
-      (response) => {
-        this.imgPath = response.sprites.front_default;
-      }
-    )
-  }
+  @Input() details!:IPokemonDetails;
 }

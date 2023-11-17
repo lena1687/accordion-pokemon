@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {catchError, Observable, throwError} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {map, Observable} from 'rxjs';
 
 export interface IPokemonListResponse {
   count: number,
@@ -12,14 +12,12 @@ export interface IPokemonListResponse {
 export interface IPokemonListItem {
   name: string,
   url: string,
+  details?: IPokemonDetails
 }
 
 export interface IPokemonDetails {
-  sprites: IPokemonSprite
-}
-
-export interface IPokemonSprite {
-  front_default: string
+  name: string,
+  image: string
 }
 
 @Injectable({
@@ -37,11 +35,9 @@ export class PokemonDataService {
   }
 
   getItem(url:string): Observable<IPokemonDetails> {
-    return this.http.get<IPokemonDetails>(url).pipe(
-      catchError((error: HttpErrorResponse) => {
-        console.error('HTTP error:', error);
-        return throwError('Something went wrong; please try again later.');
-      })
+    return this.http.get<any>(url).pipe(
+      map((response) =>  ({ name: response.name, image: response.sprites.front_default}
+      ))
     )
-  };
+  }
 }
