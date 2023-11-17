@@ -1,16 +1,20 @@
+@import "../../../styles";
+
 .accordion {
-  border: 1px solid #ddd;
+  border: 1px solid $color-grey-medium;
+  border-radius: 3px;
   margin-bottom: 16px;
 }
 
 .accordion-header {
-  padding: 10px;
-  background-color: #f1f1f1;
+  align-items: center;
+  background-color: $color-grey-light;
+  color: $color-blue-regular;
   cursor: pointer;
-  user-select: none;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 10px;
+  user-select: none;
 }
 
 .accordion-icon {

@@ -17,15 +17,13 @@ export class PokemonDetailsComponent {
 
   name:string = '';
   imgPath: string = '';
-  content: IPokemonDetails = { 'sprites': { 'back_default': '' }};
 
   constructor(private dataService: PokemonDataService) {}
 
   toggleAccordion() {
     this.dataService.getItem(this.imgPath).subscribe(
-      (response: Array<IPokemonListItem>) => {
-        this.content = response;
-        this.imgPath = this.content['sprites'] ? this.content['sprites']['back_default']  : '';
+      (response) => {
+        this.imgPath = response.sprites.front_default;
       }
     )
   }

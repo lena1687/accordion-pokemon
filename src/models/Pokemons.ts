@@ -11,11 +11,9 @@ export interface IPokemonListItem {
 }
 
 export interface IPokemonDetails {
-  sprites?: IPokemonSprite,
-  [key: string]: any
+  sprites: IPokemonSprite
 }
 
 interface IPokemonSprite {
-  back_default: string,
-  [key: string]: any
+  front_default: string
 }
