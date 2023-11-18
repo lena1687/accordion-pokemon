@@ -4,7 +4,7 @@ import {
   IPokemonListResponse,
   PokemonDataService,
 } from '../../../../../services/pokemon.data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -12,43 +12,51 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./pokemon-list.component.scss'],
 })
 export class PokemonListComponent implements OnInit {
-  limit: string = '';
+  limit: number = 20;
+  offset: number = 0;
   items: Array<IPokemonListItem> = [];
-  itemsPerPage: number = 5;
-  currentPage: number = 1;
-  totalPages: number = Math.ceil(this.items.length / this.itemsPerPage);
+  totalPages: number = 0;
 
-  get itemsOnCurrentPage(): Array<IPokemonListItem> {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    return this.items.slice(startIndex, endIndex);
+  get currentPage(): number {
+    return Math.ceil(this.offset / this.limit) + 1;
   }
 
   changePage(page: number): void {
-    this.currentPage = page;
+    this.offset = (page - 1) * this.limit;
+    void this.router.navigate([], {
+      queryParams: { offset: this.offset.toString() },
+      queryParamsHandling: 'merge',
+    });
+    this.getData();
   }
 
   constructor(
     private dataService: PokemonDataService,
     private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      this.limit = params['limit'];
+      this.limit = Number(params['limit'] ?? this.limit);
+      this.offset = Number(params['offset'] ?? this.offset);
+      if (this.limit < 2) {
+        this.limit = 2;
+        void this.router.navigate([], {
+          queryParams: { limit: this.limit.toString() },
+          queryParamsHandling: 'merge',
+        });
+      }
     });
     this.getData();
   }
 
   getData() {
-    const limitValue = +this.limit > 2 ? +this.limit : 2;
     this.dataService
-      .getList(limitValue)
+      .getList(this.limit, this.offset)
       .subscribe((response: IPokemonListResponse) => {
-        response['results'].forEach((pokemon) => {
-          this.items.push(pokemon);
-          this.totalPages = Math.ceil(this.items.length / this.itemsPerPage);
-        });
+        this.totalPages = Math.ceil(response.count / this.limit);
+        this.items = response.results;
       });
   }
 

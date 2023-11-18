@@ -28,8 +28,8 @@ export class PokemonDataService {
 
   constructor(private http: HttpClient) {}
 
-  getList(limit: number): Observable<IPokemonListResponse> {
-    const currentUrl = `${this.apiUrl}?limit=${limit}`;
+  getList(limit: number, offset: number): Observable<IPokemonListResponse> {
+    const currentUrl = `${this.apiUrl}?limit=${limit}&offset=${offset}`;
     return this.http.get<IPokemonListResponse>(currentUrl);
   }
 

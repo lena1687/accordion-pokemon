@@ -6,6 +6,11 @@
   margin: 20px 0;
 }
 
+.pagination-pages {
+  display: flex;
+  align-items: center;
+}
+
 .pagination-button {
   border: 1px solid $color-grey-dark;
   border-radius: 3px;

@@ -3,7 +3,10 @@
     <b>{{ name }}</b>
     <span class="accordion-icon" [class.expanded]="isExpanded">&#11163;</span>
   </div>
-  <div class="accordion-content" *ngIf="isExpanded">
+  <div
+    class="accordion-content"
+    [ngClass]="{ 'accordion-content--open': isExpanded }"
+  >
     <div *ngIf="!isLoaded; else content">
       <app-loader></app-loader>
     </div>

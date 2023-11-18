@@ -6,7 +6,7 @@
     (pageSelected)="changePage($event)"
   ></app-pagination>
   <div *ngIf="items">
-    <div *ngFor="let item of itemsOnCurrentPage">
+    <div *ngFor="let item of items">
       <app-accordion [name]="item.name" (onClick)="toggleAccordion(item)">
         <app-pokemon-details [details]="item.details!"></app-pokemon-details>
       </app-accordion>
