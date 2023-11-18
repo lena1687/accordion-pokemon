@@ -1,6 +1,6 @@
 <div class="pagination">
   <button
-    class="pagination-button"
+    class="pagination-button pagination-button--prev"
     (click)="selectPage(currentPage - 1)"
     [disabled]="currentPage === 1"
   >
@@ -11,7 +11,7 @@
     >&nbsp;|&nbsp;<span>{{ totalPages }}</span>
   </div>
   <button
-    class="pagination-button"
+    class="pagination-button pagination-button--next"
     (click)="selectPage(currentPage + 1)"
     [disabled]="currentPage === totalPages"
   >
